@@ -1,10 +1,10 @@
 ---
 import fetchApi from "../lib/strapi"
 import ProductFormReact from '../components/ProductFormReact'
-const responseData = await fetchApi({
-    endpoint  : 'wilayas?populate=*',
-    wrappedByKey: 'data'
-})
+// const responseData = await fetchApi({
+//     endpoint  : 'wilayas?populate=*',
+//     wrappedByKey: 'data'
+// })
 const {productPrice} = Astro.props
 ---
 <!-- <form action="" class="mt-4">
@@ -38,5 +38,6 @@ const {productPrice} = Astro.props
     </button>
 </form> -->
 <div>
-    <ProductFormReact responseData={responseData} productPrice={productPrice} client:load/>
+    <!-- <ProductFormReact responseData={responseData} productPrice={productPrice} client:load/> -->
+    <ProductFormReact  productPrice={productPrice} client:load/>
 </div>

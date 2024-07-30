@@ -18,7 +18,8 @@
       endpoint = endpoint.slice(1);
     }
   
-    const url = new URL(`${import.meta.env.STRAPI_URL}/api/${endpoint}`);
+    const url = new URL(`${import.meta.env.STRAPI_API_URL}/api/${endpoint}`);
+    console.log(url)
   
     if (query) {
       Object.entries(query).forEach(([key, value]) => {
