@@ -1,0 +1,42 @@
+---
+import fetchApi from "../lib/strapi"
+import ProductFormReact from '../components/ProductFormReact'
+const responseData = await fetchApi({
+    endpoint  : 'wilayas?populate=*',
+    wrappedByKey: 'data'
+})
+const {productPrice} = Astro.props
+---
+<!-- <form action="" class="mt-4">
+        
+    
+    <div class="mb-4">
+        <label for="number" class="mb-2 block text-sm font-medium">Name</label>
+        <input type="text" id="name" name="name"   class=" no-spinner block w-full rounded-md border border-gray-200 py-3 px-4 pr-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
+    </div>
+    <div class="mb-4">
+        <label for="number" class="mb-2 block text-sm font-medium">Phone Number</label>
+        <input type="number" name="number"  id="number"   class="block no-spinner w-full rounded-md border border-gray-200 py-3 px-4 pr-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
+    </div>
+    <div class="mb-4 ">    
+        <div class="flex flex-col sm:col-span-3">
+            <label class="mb-1 ml-3 font-semibold text-gray-500" for="">Choose Your Wilaya : </label>
+            <select class="rounded-lg border px-2 py-2 shadow-sm outline-none focus:ring" name="" id="">
+              {responseData.map(data=>(
+              <option value={data?.attributes?.wilayaname}>{data?.attributes?.wilayaname}</option>
+              ))}
+            </select>
+        </div> 
+        <p>shipping price : {}</p>
+
+    </div>
+    <button type="submit"  class="mr-2 mb-4 flex cursor-pointer items-center justify-center rounded-md bg-emerald-400 py-2 px-8 text-center text-white transition duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        Buy now
+    </button>
+</form> -->
+<div>
+    <ProductFormReact responseData={responseData} productPrice={productPrice} client:load/>
+</div>

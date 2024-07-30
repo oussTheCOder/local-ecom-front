@@ -1,0 +1,22 @@
+
+
+---
+const {title , price ,fakeprice , imgUrl ,slug} = Astro.props
+---
+
+
+<a href={`products/${slug}`}  class="relative  flex flex-col overflow-hidden rounded-lg border">
+    <div class="aspect-square overflow-hidden">
+      <img class="h-full w-full object-cover transition-all duration-300 group-hover:scale-125" src={imgUrl} alt="" />
+    </div>
+    <div class="absolute top-0 m-2 rounded-full bg-white">
+      <p class="rounded-full bg-emerald-500 p-1 text-[8px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">sale</p>
+    </div>
+    <div class="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
+      <div class="mb-2 flex">
+        <p class="mr-3 text-sm font-semibold">{price}</p>
+        <del class="text-xs text-gray-400">{fakeprice}</del> 
+      </div>
+      <h3 class="mb-2 text-sm text-gray-400">{title}</h3>
+    </div>
+  </a>
