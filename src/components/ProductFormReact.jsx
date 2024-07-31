@@ -39,7 +39,7 @@ const handleSubmit = async (event)=>{
     // data.append('totalPrice',totalPrice)
    // your URL.
 
-    const Sheet_Url="https://script.google.com/macros/s/AKfycbzxXdONSoBb-lfO3GCxwx9izd3B0uvb-8QSS5qEeFtdnXNu7bi8BPWZZZibOkX7GlntGg/exec"
+    const Sheet_Url="https://script.google.com/macros/s/AKfycbxBRdIYO2ko3CAy6u5B63WG-hmr0xB4ygmqgp_-fXCAQCpt80ePTqhV1jpdNoWZ4GX3qg/exec"
     try {
       await fetch(Sheet_Url, {
         method: 'POST',
@@ -61,7 +61,7 @@ const handleSubmit = async (event)=>{
 
   return (
     <div>
-        <form action="https://formsubmit.co/el/kawifo" method="POST"  onSubmit={handleSubmit}  className="mt-4">
+        <form   onSubmit={handleSubmit}  className="mt-4">
         
         <div className="mb-4">
             <label htmlFor="number" className="mb-2 block text-sm font-medium">Name</label>
