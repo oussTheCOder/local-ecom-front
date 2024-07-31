@@ -39,7 +39,7 @@ const handleSubmit = async (event)=>{
     // data.append('totalPrice',totalPrice)
    // your URL.
 
-    const Sheet_Url="https://script.google.com/macros/s/AKfycbzutE0w0oq7caSATkwsXuOGEXV9RxCITB6RuDv1MTc0DWl33gK9B67kp6B3PtNNss_4/exec"
+    const Sheet_Url="https://script.google.com/macros/s/AKfycbzJ535Y5aF9bzVXfZrIe1E4AaXUrg9Gm3D_LUhoMx4jnu0Chzb9uwXWXBqRDear1Wrx0Q/exec"
     try {
       await fetch(Sheet_Url, {
         method: 'POST',
