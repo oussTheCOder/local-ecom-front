@@ -5,11 +5,15 @@ const responseData = await fetchApi({
     endpoint  : 'products?populate=*',
     wrappedByKey: 'data'
 })
+console.log(responseData)
 ---
 <section class="bg-white py-12 text-gray-700 sm:py-16 lg:py-20">
     <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-md text-center">
-        <h2 class="font-serif text-2xl font-bold sm:text-3xl">Fresh Fruits & Vegetables</h2>
+        <h2 class="font-serif   text-2xl font-bold sm:text-3xl">منتجات أصلية
+          <div class=" h-1 w-1/3 mx-auto rounded bg-cyan-500"></div>
+        </h2>
+      
       </div>
       <div class="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4 lg:mt-16">
         {
@@ -18,8 +22,8 @@ const responseData = await fetchApi({
                 slug={product?.attributes?.slug} 
                 title={product?.attributes?.title}
                 price={product?.attributes?.price}
-                // fakeprice={product?.attributes?.fakeprice}
-                // imgUrl={product?.attributes?.banner?.data?.attributes?.url}
+                fakeprice={product?.attributes?.fakeprice}
+                imgUrl={product?.attributes?.banner?.data?.attributes?.url}
                 />
             ))
         }
