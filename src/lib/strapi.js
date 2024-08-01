@@ -29,6 +29,9 @@
     const res = await fetch(url.toString(),{
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
+        'Cache-Control': 'no-cache',  // Ensure no cache
+        'Pragma': 'no-cache',         // Additional cache control
+        'Expires': '0',  
       },
     });
     let data = await res.json();
