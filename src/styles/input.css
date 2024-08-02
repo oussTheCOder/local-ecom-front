@@ -1,0 +1,15 @@
+.styled-input::placeholder {
+    color: #787777; /* Placeholder text color */
+    font-size: 14px; /* Placeholder font size */
+    opacity: 1; /* Make sure opacity is 1 if you want to control color fully */
+    padding: 10px;
+  }
+  
+  /* Additional styling for the input field */
+  .styled-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
