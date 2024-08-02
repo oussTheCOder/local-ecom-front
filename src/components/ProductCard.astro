@@ -1,7 +1,8 @@
 
 
 ---
-const {title , price ,fakeprice , imgUrl, discount ,slug} = Astro.props
+const {title , price ,fakeprice , imgUrl, discount ,slug, category} = Astro.props
+
 ---
 
 
@@ -9,20 +10,24 @@ const {title , price ,fakeprice , imgUrl, discount ,slug} = Astro.props
     <div class="aspect-square overflow-hidden">
       <img class="h-full w-full object-cover transition-all duration-300 group-hover:scale-125" src={imgUrl} alt={slug} />
     </div>
-    <div class="absolute top-0 m-2 rounded-full bg-white">
+    <div class="absolute top-0 m-2  rounded-md p-1 px-2 bg-cyan-500">
       {discount && (
-      <p class="rounded-full  bg-cyan-500 p-1 text-[10px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">تخفيض</p>
+          <p class="rounded-full text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">! تخفيض</p>
       )}
+    
     </div>
     <div class="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
-      <div class="mb-2 flex">
-        <p class="mr-3 text-sm font-semibold">{price} <span>DA</span></p>
+      <p class='text-gray-400 text-xs mb-2'>{category}</p>
+      <h3 class="mb-2 text-md text-black font-bold">{title}</h3>
+      <div class="mb-3 flex">
+        <p class="text-md font-black text-cyan-600">{price} <span>دج</span></p>
         {
           discount && (
-          <del class="text-xs text-gray-400">{fakeprice}</del> 
+          <del class="text-sm mr-2 font-semibold text-gray-500">{fakeprice} <span>دج</span></del> 
           )
         }
       </div>
-      <h3 class="mb-2 text-sm text-gray-400">{title}</h3>
+      <button class="rounded-sm w-full  text-[16px] font-semibold p-3 bg-cyan-500 uppercase tracking-wide text-white ">اشتري الآن</button>
+      
     </div>
   </a>

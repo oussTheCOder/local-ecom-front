@@ -10,19 +10,22 @@ console.log(responseData)
 <section class="bg-white py-12 text-gray-700 sm:py-16 lg:py-20">
     <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-md text-center">
-        <h2 class="font-serif   text-2xl font-bold sm:text-3xl">منتجات أصلية
-          <div class=" h-1 w-1/3 mx-auto rounded bg-cyan-500"></div>
+        <h2 class="font-serif   text-2xl font-bold sm:text-3xl">منتجات أصلية وذات جودة عالية
+          <div class=" h-1 w-2/3 mx-auto rounded bg-cyan-500"></div>
         </h2>
+        <p class='text-sm mt-2 text-slate-500'>تصفح المنتجات الأكثر رواجا</p>
       
       </div>
-      <div class="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4 lg:mt-16">
+      <div class="mt-10 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 lg:mt-16">
         {
             responseData.map((product)=>(
                 <ProductCard
                 slug={product?.attributes?.slug} 
                 title={product?.attributes?.title}
                 price={product?.attributes?.price}
-                fakeprice={product?.attributes?.fakeprice}
+                fakeprice={product?.attributes?.fakePrice}
+                discount={product?.attributes?.discount}
+                category={product?.attributes?.category}
                 imgUrl={product?.attributes?.banner?.data?.attributes?.url}
                 />
             ))
