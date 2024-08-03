@@ -70,7 +70,7 @@ const handleSubmit = async (event)=>{
 
   return (
     <div>
-        <form   onSubmit={handleSubmit}  className="mt-4">
+        <form   onSubmit={handleSubmit} id='buy'  className="mt-4">
         <p className='mb-4 text-slate-500'>  أضف معلوماتك في الأسفل للطلب 👇</p> 
         <div className="mb-4">
             {/* <label htmlFor="number" className="mb-2 block text-sm font-medium">الإسم و اللقب</label> */}

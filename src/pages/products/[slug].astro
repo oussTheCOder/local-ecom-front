@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro'
 import fetchApi from "../../lib/strapi";
 import ProductForm from '../../components/ProductForm.astro'
+import ScrollButton from '../../components/ScrollButton';
 
 
 
@@ -26,12 +27,12 @@ export async function getStaticPaths() {
 const {product }  = Astro.props;
 ---
 <Layout title={product?.attributes?.title}>
-  <main class=" max-w-screen-xl">
-      <section class="w-screen mb-6">
-          <div class="m-4 mx-auto max-w-screen-lg rounded-md border border-gray-100 text-gray-600 shadow-md">
-            <h1 class="text-gray-900 my-2 text-center font-black  text-3xl">{product?.attributes?.title}</h1>
-            <div class="relative flex  flex-col text-gray-600 md:flex-row">
-              <div class="relative p-6 md:w-4/6"> 
+  <main class=" max-w-screen-xl  mx-auto">
+      <section class=" mb-12">
+          <div class="m-4 mx-auto max-w-screen-lg  text-gray-600 ">
+            <h1 class="text-gray-900 mb-10 text-center font-black  text-3xl">{product?.attributes?.title}</h1>
+            <div class="relative flex  flex-col text-gray-600 md:flex-row ">
+              <div class="relative p-6 md:w-4/6 border-2 border-cyan-500 rounded-md"> 
                 <ProductForm productPrice={product?.attributes?.price} productTitle = {product?.attributes?.title}/>
               </div>
               <div class="mx-auto flex items-center px-5 pt-1 md:p-8">
@@ -40,11 +41,56 @@ const {product }  = Astro.props;
             </div>
           </div>
           </section>
+          <div>
+            <ScrollButton client:load/>
+          </div> 
       <section class="">
-        <h1 class="text-gray-900 my-2 text-center font-black  text-3xl">{product?.attributes?.title}</h1>
-
-
-        
+        <h2 class="text-cyan-600 mx-auto max-w-[300px] text-[26px] mb-10 font-bold text-center">سهلة الإستعمال و الضبط
+          <div class=" h-1 w-[280px] mx-auto rounded bg-gray-500"></div>
+        </h2>
+        <div class="flex flex-col  items-center  justify-center  pr-6  mb-10 gap-4 md:flex-row md:justify-around">
+          <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px]">
+            يمكن تثبيت مقعد المرحاض بسهولة على المرحاض العادي و يمكن إزالته كذلك بدون جهد كبير , مما يجعله مناسب للإستخدام اليومي .
+          </p>
+          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-descr-ajus.PNG" alt="img-descr-1">
+        </div>
+        <div class="flex flex-col  items-center  justify-center  pr-6  mb-6 gap-4 md:flex-row md:justify-around">
+          <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px] md:order-2">
+            يتم تصميم مقاعد المرحاض لتكون بحجم مناسب للأطفال , مما يجعلهم يشعرون بالراحة و الأمان أثناء الاستخدام
+          </p>
+          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-descr.PNG" alt="img-descr-1">
+        </div>
+        <h2 class="text-cyan-600 mx-auto max-w-[300px] text-[26px] mb-10 font-bold text-center">  جهاز عملي و آمن  
+          <div class=" h-1 w-[280px] mx-auto rounded bg-gray-500"></div>
+        </h2>
+        <div class="flex flex-col  items-center  justify-center  pr-6  mb-6 gap-4 md:flex-row md:justify-around">
+          <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px] md:order-2">
+            تأتي المقاعد مع مقابض جانبية تساعد الطفل على التوازن و الدعم أثناء الجلوس.
+          </p>
+          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-desc-poignet.jfif" alt="img-descr-1">
+        </div>
+        <div class="flex flex-col  items-center  justify-center  pr-6  mb-6 gap-4 md:flex-row md:justify-around">
+          <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px] ">
+            تضمن القوائم المانعة للانزلاق عدم تحرك جهاز التدريب على القوة في أي مكان مع الحفاظ على مكانه بإحكام عند استخدامه.
+          </p>         
+            <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-descr-hom.PNG" alt="img-descr-1">
+        </div>
+        <h2 class="text-cyan-600 mx-auto max-w-[300px] text-[26px] mb-10 font-bold text-center">  جهاز صغير و محمول
+          <div class=" h-1 w-[280px] mx-auto rounded bg-gray-500"></div>
+        </h2>
+        <div class="flex flex-col  items-center  justify-center  pr-6  mb-6 gap-4 md:flex-row md:justify-around">
+          <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px] md:order-2">
+استخدام مقعد المرحاض يعزز من استقلالية الطفل و يشجعه على استخدام المرحاض بمفرده 
+          </p>
+          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-descr-porta.PNG" alt="img-descr-1">
+        </div>
+        <div class="flex flex-col  items-center  justify-center  pr-6  mb-6 gap-4 md:flex-row md:justify-around">
+          <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px] ">
+            لن تعاني مرة أخرى من تعليم طفلك استخدام الحمام
+          </p>
+          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-descr-fini.PNG" alt="img-descr-1">
+        </div>
+       
       </section>
         
   </main>
