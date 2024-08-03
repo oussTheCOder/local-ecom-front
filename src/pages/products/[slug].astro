@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro'
 import fetchApi from "../../lib/strapi";
 import ProductForm from '../../components/ProductForm.astro'
 import ScrollButton from '../../components/ScrollButton';
+import ImageCarouselAs from '../../components/ImageCarouselAs.astro'
 
 
 
@@ -30,16 +31,18 @@ const {product }  = Astro.props;
   <div class="">
     <ScrollButton client:load/>
   </div>
+ 
   <main class=" max-w-screen-xl  mx-auto">
       <section class=" mb-12">
           <div class="m-4 mx-auto max-w-screen-lg  text-gray-600 ">
             <h1 class="text-gray-900 mb-10 text-center font-black  text-3xl">{product?.attributes?.title}</h1>
-            <div class="relative flex  flex-col text-gray-600 md:flex-row ">
+            <div class="relative flex  flex-col  gap-10 text-gray-600 md:flex-row  bg-gray-100 " >
               <div class="relative p-6 md:w-4/6 border-2 border-cyan-500 rounded-md"> 
                 <ProductForm productPrice={product?.attributes?.price} productTitle = {product?.attributes?.title}/>
               </div>
-              <div class="mx-auto flex items-center px-5 pt-1 md:p-8">
-                <img class="block h-auto max-w-full rounded-md" src={product?.attributes?.banner?.data?.attributes?.url} alt={product?.attributes?.title} />
+              <div class="mx-auto flex items-center justify-center">
+                <ImageCarouselAs />
+                <!-- <img class="block h-auto max-w-full rounded-md" src={product?.attributes?.banner?.data?.attributes?.url} alt={product?.attributes?.title} /> -->
               </div>
             </div>
           </div>
@@ -54,13 +57,13 @@ const {product }  = Astro.props;
           <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px]">
             يمكن تثبيت مقعد المرحاض بسهولة على المرحاض العادي و يمكن إزالته كذلك بدون جهد كبير , مما يجعله مناسب للإستخدام اليومي .
           </p>
-          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-descr-ajus.PNG" alt="img-descr-1">
+          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/public/img/img-colors.JFIF" alt="img-descr-1">
         </div>
         <div class="flex flex-col  items-center  justify-center  pr-6  mb-6 gap-4 md:flex-row md:justify-around">
           <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px] md:order-2">
             يتم تصميم مقاعد المرحاض لتكون بحجم مناسب للأطفال , مما يجعلهم يشعرون بالراحة و الأمان أثناء الاستخدام
           </p>
-          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-descr.PNG" alt="img-descr-1">
+          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/public/img/img-desc-boy.JFIF" alt="img-descr-1">
         </div>
         <h2 class="text-cyan-600 mx-auto max-w-[300px] text-[26px] mb-10 font-bold text-center">  جهاز عملي و آمن  
           <div class=" h-1 w-[280px] mx-auto rounded bg-gray-500"></div>
@@ -69,13 +72,13 @@ const {product }  = Astro.props;
           <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px] md:order-2">
             تأتي المقاعد مع مقابض جانبية تساعد الطفل على التوازن و الدعم أثناء الجلوس.
           </p>
-          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-desc-poignet.jfif" alt="img-descr-1">
+          <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/public/img/img-poignet.jfif" alt="img-descr-1">
         </div>
         <div class="flex flex-col  items-center  justify-center  pr-6  mb-6 gap-4 md:flex-row md:justify-around">
           <p class="text-slate-700 font-black text-xm text-center py-2 border-y-2 max-w-[300px] ">
             تضمن القوائم المانعة للانزلاق عدم تحرك جهاز التدريب على القوة في أي مكان مع الحفاظ على مكانه بإحكام عند استخدامه.
           </p>         
-            <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-descr-hom.PNG" alt="img-descr-1">
+            <img class='block rounded-md border-cyan-500 border-2 max-w-[300px]' src="/img/img-descr-1.PNG" alt="img-descr-1">
         </div>
         <h2 class="text-cyan-600 mx-auto max-w-[300px] text-[26px] mb-10 font-bold text-center">  جهاز صغير و محمول
           <div class=" h-1 w-[280px] mx-auto rounded bg-gray-500"></div>
