@@ -23,9 +23,9 @@ const ScrollButton = () => {
   }, []);
 
   return (
-    <div>
+    <div class='w-full'>
       {isVisible && (
-         <a   href='#buy'   className="fixed bottom-[-2px] rounded-sm w-full mb-4 flex items-center justify-center gap-4 text-[16px] font-semibold p-2 bg-cyan-500 uppercase tracking-wide text-white  transition duration-150 ease-in-out hover:translate-y-1 hover:bg-cyan-400">
+         <a   href='#buy'   className="fixed  bottom-[0px]  rounded-sm w-full  flex items-center justify-center gap-4 text-[16px] font-semibold p-2 bg-cyan-500 uppercase tracking-wide text-white  transition duration-150 ease-in-out hover:translate-y-1 hover:bg-cyan-400">
          <span>👈</span>
           <span className='text-[18px] font-bold'>أنقر هنا لتأكيد الطلبية</span>
         </a>

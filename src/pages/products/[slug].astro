@@ -27,6 +27,9 @@ export async function getStaticPaths() {
 const {product }  = Astro.props;
 ---
 <Layout title={product?.attributes?.title}>
+  <div class="">
+    <ScrollButton client:load/>
+  </div>
   <main class=" max-w-screen-xl  mx-auto">
       <section class=" mb-12">
           <div class="m-4 mx-auto max-w-screen-lg  text-gray-600 ">
@@ -41,9 +44,8 @@ const {product }  = Astro.props;
             </div>
           </div>
           </section>
-          <div>
-            <ScrollButton client:load/>
-          </div> 
+          
+          
       <section class="">
         <h2 class="text-cyan-600 mx-auto max-w-[300px] text-[26px] mb-10 font-bold text-center">سهلة الإستعمال و الضبط
           <div class=" h-1 w-[280px] mx-auto rounded bg-gray-500"></div>
