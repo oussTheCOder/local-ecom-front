@@ -11,11 +11,11 @@ import 'swiper/css';
 import { Autoplay} from 'swiper/modules';
 
 const images = [
-    '/public/img/img-colors.JFIF',
-    '/public/img/img-color-rose.JFIF',
-    '/public/img/img-color-gris.JFIF',
-    '/public/img/img-color-blue.JFIF',
-    '/public/img/img-box.JFIF',
+    '/img/img-colors.png',
+    '/img/img-color-rose.png',
+    '/img/img-color-gris.png',
+    '/img/img-color-blue.png',
+    '/img/img-box.png',
 ]
 
 export default function App() {
