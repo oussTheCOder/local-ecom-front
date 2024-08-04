@@ -1,6 +1,7 @@
 import React ,{useState} from 'react'
 import "../styles/input.css";
 import ErrorField  from './ErrorField'
+import LoaderButton from './LoaderButton'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +13,7 @@ export default function ProductFormReact({ responseData , productPrice ,productT
   const [selectedWilaya , setSelectedWilaya]=useState('');
   const [shippingPrice , setShippingPrice]=useState('');
   const [selectedColor, setSelectedColor]=useState('');
+  const [loading, setLoading] = useState(false);
   const [isError , setIsError] = useState({
     'name':false,
     'phone':false,
@@ -48,6 +50,7 @@ const handleWilayaChange = ( event )=>{
 const totalPrice = shippingPrice + productPrice
 const handleSubmit = async (event)=>{
     event.preventDefault();
+    setLoading(true);
     const submittedData = {
       'name':formData.fullName,
       'phone':formData.phoneNumber,
@@ -62,6 +65,7 @@ const handleSubmit = async (event)=>{
         newErrors[key] = true
         console.log( key + ' يرجى منكم ملأ ');
         hasError = true
+        setLoading(false)
       }
       else {
         newErrors[key] = false
@@ -103,6 +107,8 @@ const handleSubmit = async (event)=>{
       });
     } catch (error) {
       console.log(error);
+    }finally{
+      setLoading(false)
     }
 
 }
@@ -165,10 +171,22 @@ const handleSubmit = async (event)=>{
         <p className='py-3 px-4 text-[14px] border-dashed border-b-2 border-cyan-300 '>{productTitle} :  <span className='text-cyan-500'>{productPrice || '--'} دج</span></p>
           <p className='py-3 px-4 text-[14px] border-dashed border-b-2 border-cyan-300 '>سعر التوصيل :  <span className='text-cyan-500'>{shippingPrice || 'اختر ولايتك -'} دج</span></p>
           <p className='py-3 font-semibold px-4'>السعر الإجمالي : <span className='text-cyan-500'>{totalPrice || '--'} دج</span></p>
-        <button type="submit"   className="rounded-sm w-full mb-4 flex items-center justify-center gap-4 text-[16px] font-semibold p-2 bg-cyan-500 uppercase tracking-wide text-white  transition duration-150 ease-in-out hover:translate-y-1 hover:bg-cyan-400">
-         <span>👈</span>
-          <span className='text-[18px] font-bold'>أنقر هنا لتأكيد الطلبية</span>
-        </button>
+        <button type="submit" disabled={loading}   className="rounded-sm w-full mb-4 flex items-center justify-center gap-4 text-[16px] font-semibold p-2 bg-cyan-500 uppercase tracking-wide text-white  transition duration-150 ease-in-out hover:translate-y-1 hover:bg-cyan-400">
+             {loading ?
+             (
+                <LoaderButton text='تتم معالجة معلوماتك اللآن ...'/>
+             ) 
+             :
+             (
+              <>
+              <span>👈</span>
+              <span className='text-[18px] font-bold'>أنقر هنا لتأكيد الطلبية</span>
+              </>
+             )
+              }
+              
+           </button>
+      
         <div className="dropdown-container">
       {/* <button type='input' onClick={toggleDropdownOrderDetails} className=" flex items-center justify-between bg-cyan-50 w-full font-semibold  text-right rounded-sm px-4 py-3 border-b-2 border-cyan-300">
         <div className='flex items-center '>
