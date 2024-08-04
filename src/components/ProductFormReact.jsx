@@ -8,8 +8,9 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // export default function ProductFormReact({responseData , productPrice}) {
 export default function ProductFormReact({ responseData , productPrice ,productTitle}) {
   const [isDropOrderDetailsOpen , setIsDropOrderDetailsOpen] = useState(false)
-  const [selectedWilaya , setSelectedWilaya]=useState('choose');
-  const [shippingPrice , setShippingPrice]=useState(1200);
+  const [selectedWilaya , setSelectedWilaya]=useState('');
+  const [shippingPrice , setShippingPrice]=useState('');
+  const [selectedColor, setSelectedColor]=useState('');
   const toggleDropdownOrderDetails = () => {
     event.preventDefault(); 
     setIsDropOrderDetailsOpen(!isDropOrderDetailsOpen);
@@ -27,7 +28,9 @@ export default function ProductFormReact({ responseData , productPrice ,productT
       [event.target.name] : event.target.value
     })
   }
-  
+  const handleColorChange = (event)=>{
+    setSelectedColor(event.target.value)
+  }
 const handleWilayaChange = ( event )=>{
     console.log('handleChange event:', event); // Debug log
    const selectedWilaya = responseData.find(wilaya=>wilaya?.attributes?.name === event.target.value)
@@ -40,15 +43,17 @@ const handleSubmit = async (event)=>{
     event.preventDefault();
     console.log('Form submitted:', formData);
     const data = new FormData();
-    data.append('fullName', formData.fullName);
-    data.append('phoneNumber', formData.phoneNumber);
-    data.append('address', formData.address);
-    data.append('productPrice',productPrice);
-    data.append('shippingPrice',shippingPrice);
-    data.append('totalPrice',totalPrice)
+    data.append('الاسم و اللقب', formData.fullName);
+    data.append('رقم الهاتف', formData.phoneNumber);
+    data.append('الولاية', selectedWilaya);
+    data.append('العنوان', formData.address);
+    data.append('اللون المفضل',selectedColor),
+    data.append('سعر المنتج',productPrice);
+    data.append('سعر التوصيل',shippingPrice);
+    data.append('السعر الإجمالي',totalPrice)
    // your URL.
-
-    const Sheet_Url="https://script.google.com/macros/s/AKfycbzJ535Y5aF9bzVXfZrIe1E4AaXUrg9Gm3D_LUhoMx4jnu0Chzb9uwXWXBqRDear1Wrx0Q/exec"
+   console.log('color is :' , selectedColor)
+    const Sheet_Url="https://script.google.com/macros/s/AKfycbyXrlHs6NOfP7t0jWQa2waXmDJiNUvLvZ7h_opBKUTpMuueCq34WqjGGGjWeunYoU4h/exec"
     try {
       await fetch(Sheet_Url, {
         method: 'POST',
@@ -82,8 +87,10 @@ const handleSubmit = async (event)=>{
         </div>
         <div className="mb-4 ">    
             <div className="flex flex-col sm:col-span-3">
-                <label className="mb-1 ml-3 font-semibold text-gray-500" htmlFor="wilaya">ولاية الإقامة : </label>
                 <select  className="rounded-lg border px-2 py-2 shadow-sm outline-none focus:ring" name="wilaya" id="wilaya" value={selectedWilaya}  onChange={handleWilayaChange}>
+                <option value="" disabled selected='selected'>
+                  ولاية الإقامة
+                  </option>
                   {responseData.map(data=>(
                   <option  key={data?.id} value={data?.attributes?.name}>{data?.attributes?.name}</option>
                   ))}
@@ -94,10 +101,22 @@ const handleSubmit = async (event)=>{
             {/* <label htmlFor="address" className="mb-2 block text-sm font-medium">العنوان : '<span class='text-xs'>لا تنس ذكر اسم البلدية</span>'</label> */}
             <input type="text" name="address"  value={formData.address} onChange={handleChangeFormData} placeholder='العنوان : "لا تنس ذكر اسم البلدية "'   className="styled-input block no-spinner w-full rounded-md border border-gray-200 py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
         </div>
+        <div className="mb-4 ">    
+            <div className="flex flex-col sm:col-span-3">
+                <select  className="rounded-lg border px-2 py-2 shadow-sm outline-none focus:ring" name="color" id="color" onChange={handleColorChange}>
+                  <option value="" disabled selected='selected'>
+                  اختر لونك المفضل
+                  </option>
+                  <option value="رمادي - Gris">رمادي - gris</option>
+                  <option value="أزرق - Bleu">أزرق - Bleu</option>
+                  <option value="وردي- Rose">وردي- Rose</option>
+                </select>
+            </div>
+        </div>
         
-        <p className='py-3 px-4 text-[14px] border-dashed border-b-2 border-cyan-300 '>{productTitle} :  <span className='text-cyan-500'>{productPrice || 'غير محدد بعد اعد تحميل الموقع'} دج</span></p>
-          <p className='py-3 px-4 text-[14px] border-dashed border-b-2 border-cyan-300 '>سعر التوصيل :  <span className='text-cyan-500'>{shippingPrice || 'اختر ولايتك'} دج</span></p>
-          <p className='py-3 font-semibold px-4'>السعر الإجمالي : <span className='text-cyan-500'>{totalPrice || 'غير محدد بعد'} دج</span></p>
+        <p className='py-3 px-4 text-[14px] border-dashed border-b-2 border-cyan-300 '>{productTitle} :  <span className='text-cyan-500'>{productPrice || '--'} دج</span></p>
+          <p className='py-3 px-4 text-[14px] border-dashed border-b-2 border-cyan-300 '>سعر التوصيل :  <span className='text-cyan-500'>{shippingPrice || 'اختر ولايتك -'} دج</span></p>
+          <p className='py-3 font-semibold px-4'>السعر الإجمالي : <span className='text-cyan-500'>{totalPrice || '--'} دج</span></p>
         <button type="submit"   className="rounded-sm w-full mb-4 flex items-center justify-center gap-4 text-[16px] font-semibold p-2 bg-cyan-500 uppercase tracking-wide text-white  transition duration-150 ease-in-out hover:translate-y-1 hover:bg-cyan-400">
          <span>👈</span>
           <span className='text-[18px] font-bold'>أنقر هنا لتأكيد الطلبية</span>
