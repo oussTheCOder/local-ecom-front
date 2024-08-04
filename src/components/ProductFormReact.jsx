@@ -1,5 +1,6 @@
 import React ,{useState} from 'react'
 import "../styles/input.css";
+import ErrorField  from './ErrorField'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -7,19 +8,25 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 // export default function ProductFormReact({responseData , productPrice}) {
 export default function ProductFormReact({ responseData , productPrice ,productTitle}) {
-  const [isDropOrderDetailsOpen , setIsDropOrderDetailsOpen] = useState(false)
+  const [isDropOrderDetailsOpen , setIsDropOrderDetailsOpen] = useState(false);
   const [selectedWilaya , setSelectedWilaya]=useState('');
   const [shippingPrice , setShippingPrice]=useState('');
   const [selectedColor, setSelectedColor]=useState('');
+  const [isError , setIsError] = useState({
+    'name':false,
+    'phone':false,
+    'address':false,
+    'wilaya':false,
+    'color':false
+  })
   const toggleDropdownOrderDetails = () => {
     event.preventDefault(); 
     setIsDropOrderDetailsOpen(!isDropOrderDetailsOpen);
   };
-  console.log('wilayasData' , responseData)
   const [formData , setFormData]=useState({
     fullName : '',
     phoneNumber: '',
-    address: ''
+    address: '',
   })
 
   const handleChangeFormData = (event) => {
@@ -41,7 +48,35 @@ const handleWilayaChange = ( event )=>{
 const totalPrice = shippingPrice + productPrice
 const handleSubmit = async (event)=>{
     event.preventDefault();
-    console.log('Form submitted:', formData);
+    const submittedData = {
+      'name':formData.fullName,
+      'phone':formData.phoneNumber,
+      'wilaya':selectedWilaya,
+      'address':formData.address,
+      'color':selectedColor
+    }
+    let newErrors = { ...isError };
+    let hasError = false
+    Object.entries(submittedData).forEach(([key, value]) => {
+      if(value === ''){
+        newErrors[key] = true
+        console.log( key + ' يرجى منكم ملأ ');
+        hasError = true
+      }
+      else {
+        newErrors[key] = false
+      }
+    });
+
+    // console.log(newErrors);
+    setIsError(newErrors)
+    if(hasError){
+      console.log(newErrors)
+      console.log('Please fill out all required fields.');
+      return; // Exit the function to prevent submission
+    }
+    // console.log(submittedData)
+    // console.log('Form submitted:', formData);
     const data = new FormData();
     data.append('الاسم و اللقب', formData.fullName);
     data.append('رقم الهاتف', formData.phoneNumber);
@@ -52,7 +87,7 @@ const handleSubmit = async (event)=>{
     data.append('سعر التوصيل',shippingPrice);
     data.append('السعر الإجمالي',totalPrice)
    // your URL.
-   console.log('color is :' , selectedColor)
+   
     const Sheet_Url="https://script.google.com/macros/s/AKfycbyXrlHs6NOfP7t0jWQa2waXmDJiNUvLvZ7h_opBKUTpMuueCq34WqjGGGjWeunYoU4h/exec"
     try {
       await fetch(Sheet_Url, {
@@ -64,7 +99,7 @@ const handleSubmit = async (event)=>{
       setFormData({
         fullName: '',
         phoneNumber: '',
-        address:''
+        address:'',
       });
     } catch (error) {
       console.log(error);
@@ -75,15 +110,20 @@ const handleSubmit = async (event)=>{
 
   return (
     <div>
-        <form   onSubmit={handleSubmit} id='buy'  className="mt-4">
+        <form   onSubmit={handleSubmit}   className="mt-4">
         <p className='mb-4 text-slate-500'>  أضف معلوماتك في الأسفل للطلب 👇</p> 
         <div className="mb-4">
-            {/* <label htmlFor="number" className="mb-2 block text-sm font-medium">الإسم و اللقب</label> */}
             <input type="text" id="name" name="fullName" value={formData.fullName} onChange={handleChangeFormData} placeholder='الاسم و اللقب'  className="styled-input no-spinner block w-full rounded-md border border-gray-200 py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
+            {
+              isError.name && (<ErrorField errorMsg={`املأ الإسم و اللقب من فضلك`} />)
+            }
         </div>
+
         <div className="mb-4">
-            {/* <label htmlFor="number" className="mb-2 block text-sm font-medium">رقم الهاتف</label> */}
             <input type="number" name="phoneNumber"  id="number" value={formData.phoneNumber} onChange={handleChangeFormData} placeholder='رقم الهاتف'  className="styled-input block no-spinner w-full rounded-md border border-gray-200 py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
+            {
+              isError.phone && (<ErrorField errorMsg={`املأ رقم الهاتف من فضلك`} />)
+            }
         </div>
         <div className="mb-4 ">    
             <div className="flex flex-col sm:col-span-3">
@@ -95,11 +135,16 @@ const handleSubmit = async (event)=>{
                   <option  key={data?.id} value={data?.attributes?.name}>{data?.attributes?.name}</option>
                   ))}
                 </select>
+                {
+              isError.wilaya && (<ErrorField errorMsg={`املأ ولاية الإقامة من فضلك`} />)
+            }
             </div>
         </div>
         <div className="mb-4">
-            {/* <label htmlFor="address" className="mb-2 block text-sm font-medium">العنوان : '<span class='text-xs'>لا تنس ذكر اسم البلدية</span>'</label> */}
             <input type="text" name="address"  value={formData.address} onChange={handleChangeFormData} placeholder='العنوان : "لا تنس ذكر اسم البلدية "'   className="styled-input block no-spinner w-full rounded-md border border-gray-200 py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
+            {
+              isError.address && (<ErrorField errorMsg={`املأ عنوان إقامتك من فضلك`} />)
+            }
         </div>
         <div className="mb-4 ">    
             <div className="flex flex-col sm:col-span-3">
@@ -111,6 +156,9 @@ const handleSubmit = async (event)=>{
                   <option value="أزرق - Bleu">أزرق - Bleu</option>
                   <option value="وردي- Rose">وردي- Rose</option>
                 </select>
+                {
+              isError.color && (<ErrorField errorMsg={`اختراللون من فضلك`} />)
+            }
             </div>
         </div>
         

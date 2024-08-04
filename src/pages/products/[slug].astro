@@ -35,7 +35,7 @@ const {product }  = Astro.props;
   <main class=" max-w-screen-xl  mx-auto">
       <section class=" mb-12">
           <div class="m-4 mx-auto max-w-screen-lg  text-gray-600 ">
-            <h1 class="text-gray-900 mb-10 text-center font-black  text-3xl">{product?.attributes?.title}</h1>
+            <h1 class="text-gray-900 mb-10 text-center font-black  text-3xl" id="title">{product?.attributes?.title}</h1>
             <div class="relative flex  flex-col  gap-10 text-gray-600 md:flex-row  bg-gray-100 " >
               <div class="relative p-6 md:w-4/6 border-2 border-cyan-500 rounded-md"> 
                 <ProductForm productPrice={product?.attributes?.price} productTitle = {product?.attributes?.title}/>
