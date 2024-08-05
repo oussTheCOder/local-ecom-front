@@ -91,11 +91,15 @@ const handleSubmit = async (event)=>{
     data.append('سعر التوصيل',shippingPrice);
     data.append('السعر الإجمالي',totalPrice)
    // your URL.
+   // Hash the name and phone number
+   const hashedName = SHA256(formData.fullName).toString();
+   const hashedPhone = SHA256(formData.phoneNumber).toString();
+   const hashedWilaya = SHA256(selectedWilaya).toString();
    if (window.fbq) {
     window.fbq('track', 'Purchase', {
-      name: formData.fullName,
-      phone: formData.phoneNumber,
-      wilaya :selectedWilaya,
+      name: hashedName,
+      phone: hashedPhone,
+      wilaya :hashedWilaya,
     });
   }
    
