@@ -90,14 +90,12 @@ const handleSubmit = async (event)=>{
     data.append('سعر المنتج',productPrice);
     data.append('سعر التوصيل',shippingPrice);
     data.append('السعر الإجمالي',totalPrice)
-   // your URL.
-   // Hash the name and phone number
-   const hashedName = SHA256(formData.fullName).toString();
-   const hashedPhone = SHA256(formData.phoneNumber).toString();
-   const hashedWilaya = SHA256(selectedWilaya).toString();
-   if (window.fbq) {
-    window.fbq('track', 'Purchase');
-  }
+  //  // your URL.
+  //  // Hash the name and phone number
+  //  const hashedName = SHA256(formData.fullName).toString();
+  //  const hashedPhone = SHA256(formData.phoneNumber).toString();
+  //  const hashedWilaya = SHA256(selectedWilaya).toString();
+
    
     const Sheet_Url="https://script.google.com/macros/s/AKfycbwBw1D7Ilc31bUiiNSCMPTra2j57ucLvyPrCawwkY73WrSWvGimGjEsenaWa04dSuxfGg/exec"
     try {
