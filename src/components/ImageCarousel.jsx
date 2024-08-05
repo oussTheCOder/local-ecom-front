@@ -36,7 +36,7 @@ export default function App() {
         {images.map((imgSrc , id)=>
             (
                 <SwiperSlide  key={id}>
-                  <img src={imgSrc} alt={'image slide' + id} className=' max-w-[340px] sm:max-w-[380px] md:max-w-[420px]'  />
+                  <img src={imgSrc} alt={'image slide' + id} className='rounded-md max-w-[340px] sm:max-w-[380px] md:max-w-[420px]'  />
                 </SwiperSlide>
             )
         )
