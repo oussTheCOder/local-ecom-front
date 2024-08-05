@@ -92,7 +92,7 @@ const handleSubmit = async (event)=>{
     data.append('السعر الإجمالي',totalPrice)
    // your URL.
    if (window.fbq) {
-    window.fbq('track', 'Lead', {
+    window.fbq('track', 'Purchase', {
       name: formData.fullName,
       phone: formData.phoneNumber,
       wilaya :selectedWilaya,
