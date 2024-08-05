@@ -96,11 +96,7 @@ const handleSubmit = async (event)=>{
    const hashedPhone = SHA256(formData.phoneNumber).toString();
    const hashedWilaya = SHA256(selectedWilaya).toString();
    if (window.fbq) {
-    window.fbq('track', 'Purchase', {
-      name: hashedName,
-      phone: hashedPhone,
-      wilaya :hashedWilaya,
-    });
+    window.fbq('track', 'Purchase');
   }
    
     const Sheet_Url="https://script.google.com/macros/s/AKfycbwBw1D7Ilc31bUiiNSCMPTra2j57ucLvyPrCawwkY73WrSWvGimGjEsenaWa04dSuxfGg/exec"
