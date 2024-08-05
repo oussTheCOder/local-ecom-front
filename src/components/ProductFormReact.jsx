@@ -91,6 +91,13 @@ const handleSubmit = async (event)=>{
     data.append('سعر التوصيل',shippingPrice);
     data.append('السعر الإجمالي',totalPrice)
    // your URL.
+   if (window.fbq) {
+    window.fbq('track', 'Lead', {
+      name: formData.fullName,
+      phone: formData.phoneNumber,
+      wilaya :selectedWilaya,
+    });
+  }
    
     const Sheet_Url="https://script.google.com/macros/s/AKfycbwBw1D7Ilc31bUiiNSCMPTra2j57ucLvyPrCawwkY73WrSWvGimGjEsenaWa04dSuxfGg/exec"
     try {
