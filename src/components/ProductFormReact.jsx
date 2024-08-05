@@ -113,7 +113,9 @@ const handleSubmit = async (event)=>{
     } catch (error) {
       console.log(error);
     }finally{
-      setLoading(false)
+      setLoading(false);
+     window.location.href = '/thank-you';
+
     }
 
 }
