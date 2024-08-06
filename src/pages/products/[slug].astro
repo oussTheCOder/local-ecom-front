@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import fetchApi from "../../lib/strapi";
+import Nums from "../../components/Nums.astro";
 import ProductForm from '../../components/ProductForm.astro'
 import ScrollButton from '../../components/ScrollButton';
 import ImageCarouselAs from '../../components/ImageCarouselAs.astro'
@@ -33,6 +34,7 @@ const {product }  = Astro.props;
   </div>
  
   <main class=" max-w-screen-xl  mx-auto">
+    <Nums />
       <section class=" mb-12">
           <div class="m-4 mx-auto max-w-screen-lg  text-gray-600 ">
             <h1 class="text-gray-900 mb-10 text-center font-black  text-3xl" id="title">{product?.attributes?.title}</h1>
