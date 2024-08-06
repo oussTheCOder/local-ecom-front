@@ -15,6 +15,7 @@ export default function ProductFormReact({ responseData , productPrice ,productT
   const [selectedColor, setSelectedColor]=useState('');
   const [loading, setLoading] = useState(false);
   const [isError , setIsError] = useState({
+    'isError':false,
     'name':false,
     'phone':false,
     'address':false,
@@ -65,10 +66,12 @@ const handleSubmit = async (event)=>{
         newErrors[key] = true
         console.log( key + ' يرجى منكم ملأ ');
         hasError = true
+        newErrors['isError']=true
         setLoading(false)
       }
       else {
         newErrors[key] = false
+        newErrors['isError']=true
       }
     });
 
@@ -126,21 +129,21 @@ const handleSubmit = async (event)=>{
         <form   onSubmit={handleSubmit}   className="mt-4">
         <p className='mb-4 text-slate-500'>  أضف معلوماتك في الأسفل للطلب 👇</p> 
         <div className="mb-4">
-            <input type="text" id="name" name="fullName" value={formData.fullName} onChange={handleChangeFormData} placeholder='الاسم و اللقب'  className="styled-input no-spinner block w-full rounded-md border border-gray-200 py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
+            <input type="text" id="name" name="fullName" value={formData.fullName} onChange={handleChangeFormData} placeholder='الاسم و اللقب'  className="styled-input  no-spinner block w-full rounded-md border border-cyan-300 py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
             {
               isError.name && (<ErrorField errorMsg={`املأ الإسم و اللقب من فضلك`} />)
             }
         </div>
 
         <div className="mb-4">
-            <input type="number" name="phoneNumber"  id="number" value={formData.phoneNumber} onChange={handleChangeFormData} placeholder='رقم الهاتف'  className="styled-input block no-spinner w-full rounded-md border border-gray-200 py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
+            <input type="number" name="phoneNumber"  id="number" value={formData.phoneNumber} onChange={handleChangeFormData} placeholder='رقم الهاتف'  className="styled-input block no-spinner border border-cyan-300 w-full rounded-md  py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
             {
               isError.phone && (<ErrorField errorMsg={`املأ رقم الهاتف من فضلك`} />)
             }
         </div>
         <div className="mb-4 ">    
             <div className="flex flex-col sm:col-span-3">
-                <select  className="rounded-lg border px-2 py-2 shadow-sm outline-none focus:ring" name="wilaya" id="wilaya" value={selectedWilaya}  onChange={handleWilayaChange}>
+                <select  className="rounded-lg border bg-white border-cyan-300 px-2 py-2 shadow-sm outline-none focus:ring" name="wilaya" id="wilaya" value={selectedWilaya}  onChange={handleWilayaChange}>
                 <option value="" disabled selected='selected'>
                   ولاية الإقامة
                   </option>
@@ -154,14 +157,14 @@ const handleSubmit = async (event)=>{
             </div>
         </div>
         <div className="mb-4">
-            <input type="text" name="address"  value={formData.address} onChange={handleChangeFormData} placeholder='العنوان : "لا تنس ذكر اسم البلدية "'   className="styled-input block no-spinner w-full rounded-md border border-gray-200 py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
+            <input type="text" name="address"  value={formData.address} onChange={handleChangeFormData} placeholder='العنوان : "لا تنس ذكر اسم البلدية "'   className="styled-input block no-spinner w-full rounded-md border  border-cyan-300 py-3 px-4  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" />
             {
               isError.address && (<ErrorField errorMsg={`املأ عنوان إقامتك من فضلك`} />)
             }
         </div>
         <div className="mb-4 ">    
             <div className="flex flex-col sm:col-span-3">
-                <select  className="rounded-lg border px-2 py-2 shadow-sm outline-none focus:ring" name="color" id="color" onChange={handleColorChange}>
+                <select  className="rounded-lg bg-white border-cyan-300 border px-2 py-2 shadow-sm outline-none focus:ring" name="color" id="color" onChange={handleColorChange}>
                   <option value="" disabled selected='selected'>
                   اختر لونك المفضل
                   </option>
@@ -178,7 +181,8 @@ const handleSubmit = async (event)=>{
         <p className='py-3 px-4 text-[14px] border-dashed border-b-2 border-cyan-300 '>{productTitle} :  <span className='text-cyan-500'>{productPrice || '--'} دج</span></p>
           <p className='py-3 px-4 text-[14px] border-dashed border-b-2 border-cyan-300 '>سعر التوصيل :  <span className='text-cyan-500'>{shippingPrice || 'اختر ولايتك -'} دج</span></p>
           <p className='py-3 font-semibold px-4'>السعر الإجمالي : <span className='text-cyan-500'>{totalPrice || '--'} دج</span></p>
-        <button type="submit" disabled={loading}   className="rounded-sm w-full mb-4 flex items-center justify-center gap-4 text-[16px] font-semibold p-2 bg-cyan-500 uppercase tracking-wide text-white  transition duration-150 ease-in-out hover:translate-y-1 hover:bg-cyan-400">
+          {isError.isError && <ErrorField className='text-center' errorMsg={'يوجد بعض الخانات غير مملوءة , إملأها جميعا؟؟'} /> }
+        <button type="submit" disabled={loading}   className="rounded-sm w-full mt-2 mb-4 flex items-center justify-center gap-4 text-[16px] font-semibold p-2 bg-cyan-500 uppercase tracking-wide text-white  transition duration-150 ease-in-out hover:translate-y-1 hover:bg-cyan-400">
              {loading ?
              (
                 <LoaderButton text='تتم معالجة معلوماتك اللآن ...'/>
