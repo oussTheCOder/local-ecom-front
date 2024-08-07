@@ -168,11 +168,11 @@ const handleSubmit = async (event)=>{
                   <option value="" disabled selected='selected'>
                   اختر لونك المفضل
                   </option>
-                  <option value="رمادي - Gris">رمادي - gris</option>
+                  {/* <option value="رمادي - Gris">رمادي - gris</option> */}
                   <option value="أزرق - Bleu">أزرق - Bleu</option>
-                  <option value="وردي- Rose">وردي- Rose</option>
+                  <option value="وردي خافت-  Rose Poudré"> وردي خافت- Rose Poudré</option>
                 </select>
-                {
+                { 
               isError.color && (<ErrorField errorMsg={`اختراللون من فضلك`} />)
             }
             </div>
