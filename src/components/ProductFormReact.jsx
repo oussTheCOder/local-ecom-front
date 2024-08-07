@@ -22,6 +22,11 @@ export default function ProductFormReact({ responseData , productPrice ,productT
     'wilaya':false,
     'color':false
   })
+  const colors = [
+    { name: 'Bleu', value: 'blue'},
+    { name: 'Beige', value: 'Beige' },
+  ];
+
   const toggleDropdownOrderDetails = () => {
     event.preventDefault(); 
     setIsDropOrderDetailsOpen(!isDropOrderDetailsOpen);
@@ -164,18 +169,25 @@ const handleSubmit = async (event)=>{
         </div>
         <div className="mb-4 ">    
             <div className="flex flex-col sm:col-span-3">
-                <select  className="rounded-lg bg-white border-cyan-300 border px-2 py-2 shadow-sm outline-none focus:ring" name="color" id="color" onChange={handleColorChange}>
-                  <option value="" disabled selected='selected'>
-                  اختر لونك المفضل
+                  <select
+                  className="rounded-lg bg-white border-cyan-300 border px-2 py-2 shadow-sm outline-none focus:ring"
+                  name="color"
+                  id="color"
+                  value={selectedColor}
+                  onChange={handleColorChange}
+                >
+                  <option value="" disabled>
+                    اختر لونك المفضل
                   </option>
-                  {/* <option value="رمادي - Gris">رمادي - gris</option> */}
-                  <option value="أزرق - Bleu">أزرق - Bleu</option>
-                  <option value="وردي خافت-  Rose Poudré"> وردي خافت- Rose Poudré</option>
+                  {colors.map((color) => (
+                    <option key={color.value} value={color.value}>
+                      {color.name}
+                    </option>
+                  ))}
                 </select>
-                { 
-              isError.color && (<ErrorField errorMsg={`اختراللون من فضلك`} />)
-            }
             </div>
+            {isError.color && (<ErrorField errorMsg={`اختراللون من فضلك`} />)}
+            
         </div>
         
         <p className='py-3 px-4 text-[14px] border-dashed border-b-2 border-cyan-300 '>{productTitle} :  <span className='text-cyan-500'>{productPrice || '--'} دج</span></p>
