@@ -25,6 +25,7 @@ export default function ProductFormReact({ responseData , productPrice ,productT
   const colors = [
     { name: 'Bleu', value: 'blue'},
     { name: 'Beige', value: 'Beige' },
+    { name: 'Rose', value: 'Rose' },
   ];
 
   const toggleDropdownOrderDetails = () => {

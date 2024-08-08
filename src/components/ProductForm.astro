@@ -1,9 +1,8 @@
 ---
-
 import fetchApi from "../lib/strapi"
 import ProductFormReact from '../components/ProductFormReact'
 const responseData = await fetchApi({
-    endpoint  : 'wilayas?pagination[pageSize]=100',
+    endpoint  : 'wilayas?pagination[pageSize]=100&sort=wilayaNumber:asc',
     wrappedByKey: 'data'
 })
 const {productPrice , productTitle} = Astro.props
