@@ -3,10 +3,18 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="شكرا لكم">
 	<main>
         <h1 class="text-center text-4xl md:text-6xl font-bold mt-52 max-w-screen-xl mx-auto">
             🎉 شكرا , سنتصل بكم 📞  في الدقائق القادمة لتأكيد طلبيتكم
         </h1>
 	</main>
+    <script>
+		// Track the purchase event
+		if (typeof fbq !== 'undefined') {
+		   fbq('track', 'Purchase');
+		} else {
+		   console.error('Facebook Pixel not loaded.');
+		}
+	 </script>
 </Layout>

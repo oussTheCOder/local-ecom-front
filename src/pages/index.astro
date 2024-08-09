@@ -4,18 +4,11 @@ import Products from '../components/Products.astro'
 import Header from '../components/Header.astro';
 ---
 
-<Layout title="شكرا لكم">
+<Layout title="Welcome to Store">م
 	<main>
 		<Header/>
 		<Products/>
 	</main>
-	<script>
-		// Track the purchase event
-		if (typeof fbq !== 'undefined') {
-		   fbq('track', 'Purchase');
-		} else {
-		   console.error('Facebook Pixel not loaded.');
-		}
-	 </script>
+
 </Layout>
 
