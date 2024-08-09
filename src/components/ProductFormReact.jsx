@@ -59,6 +59,7 @@ const handleSubmit = async (event)=>{
     event.preventDefault();
     setLoading(true);
     const submittedData = {
+      'isError':false,
       'name':formData.fullName,
       'phone':formData.phoneNumber,
       'wilaya':selectedWilaya,
@@ -77,7 +78,7 @@ const handleSubmit = async (event)=>{
       }
       else {
         newErrors[key] = false
-        newErrors['isError']=true
+        newErrors['isError']=false
       }
     });
 
