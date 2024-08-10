@@ -24,8 +24,10 @@ export default function ProductFormReact({ responseData , productPrice ,productT
   })
   const colors = [
     { name: 'Bleu', value: 'blue'},
-    { name: 'Beige', value: 'Beige' },
+    { name: 'Rose poudré', value: 'Rose poudré' },
     { name: 'Rose', value: 'Rose' },
+    { name: 'Gris', value: 'Gris' },
+    { name: "Vert d'eau", value: "Vert d'eau" },
   ];
 
   const toggleDropdownOrderDetails = () => {
