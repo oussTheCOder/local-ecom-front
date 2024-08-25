@@ -153,7 +153,7 @@ const handleSubmit = async (event)=>{
         <div className="mb-4 ">    
             <div className="flex flex-col sm:col-span-3">
                 <select  className="rounded-lg border bg-white border-cyan-300 px-2 py-2 shadow-sm outline-none focus:ring" name="wilaya" id="wilaya" value={selectedWilaya}  onChange={handleWilayaChange}>
-                <option value="" disabled selected='selected'>
+                <option value="ولاية الإقامة" disabled selected='selected'>
                   ولاية الإقامة
                   </option>
                   {responseData.map(data=>(
